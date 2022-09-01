@@ -1,1 +1,1 @@
-# IdraPluginManager
+# Idra Plug-in Manager

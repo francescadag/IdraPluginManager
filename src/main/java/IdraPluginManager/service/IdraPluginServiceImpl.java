@@ -12,7 +12,7 @@ import IdraPluginManager.model.Plugin;
 import IdraPluginManager.model.PluginMethod;
 import IdraPluginManager.model.PluginStatus;
 import IdraPluginManager.model.PluginType;
-import IdraPluginManager.pluginParamethers.model.PluginParamethersDTO;
+import IdraPluginManager.paramethers.model.ParametersDTO;
 import IdraPluginManager.repository.PluginRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,7 +24,7 @@ public class IdraPluginServiceImpl implements IdraPluginService {
 	PluginRepository pluginRepo ;
 
 	@Override
-	public Plugin addPlugin(String name, String description, String link, PluginParamethersDTO paramethers, 
+	public Plugin addPlugin(String name, String description, String link, ParametersDTO paramethers, 
 			PluginType type, PluginStatus status, PluginMethod method, List<String> compatibleFormats) {
 		
 		if (existsPluginName(name)) {
@@ -35,7 +35,7 @@ public class IdraPluginServiceImpl implements IdraPluginService {
 		Plugin p = new Plugin();
 		p.setName(name);
 		p.setDescription(description);
-		p.setLink(link);
+		p.setUrl(link);
 		p.setStatus(status);
 		p.setMethod(method);
 		p.setParamethers(paramethers);
@@ -76,7 +76,7 @@ public class IdraPluginServiceImpl implements IdraPluginService {
 		p.setDescription(description);
 		p.setStatus(status);
 		p.setType(type);
-		p.setLink(link);
+		p.setUrl(link);
 		p.setMethod(method);
 		p.setCompatibleFormats(compatibleFormats);
 		

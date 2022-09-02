@@ -11,13 +11,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.TypeAlias;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import IdraPluginManager.pluginParamethers.model.PluginParamethersDTO;
-import IdraPluginManager.returnedObject.model.ReturnedObjectDTO;
+import IdraPluginManager.paramethers.model.ParametersDTO;
 import IdraPluginManager.utils.AutoGenObjectID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -49,9 +49,10 @@ implements Serializable {
 	private String description;
 	private PluginStatus status;
 	private PluginType type;
-	private String link;
+	@Indexed(unique=true)
+	private String url;
 	private PluginMethod method;
-	private PluginParamethersDTO paramethers;
+	private ParametersDTO paramethers;
 	private List<String> compatibleFormats;
 	
 	

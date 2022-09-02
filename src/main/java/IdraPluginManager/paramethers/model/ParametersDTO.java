@@ -1,4 +1,4 @@
-package IdraPluginManager.pluginParamethers.model;
+package IdraPluginManager.paramethers.model;
 
 import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PluginParamethersDTO {
+public class ParametersDTO {
 	@NotBlank
-	private PluginParamethers requestParamethers;
+	private Parameters paramethers;
 }

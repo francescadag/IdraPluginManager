@@ -8,11 +8,11 @@ import IdraPluginManager.model.Plugin;
 import IdraPluginManager.model.PluginMethod;
 import IdraPluginManager.model.PluginStatus;
 import IdraPluginManager.model.PluginType;
-import IdraPluginManager.pluginParamethers.model.PluginParamethersDTO;
+import IdraPluginManager.paramethers.model.ParametersDTO;
 
 public interface IdraPluginService {
 
-	public Plugin addPlugin(String name, String description, String URL, PluginParamethersDTO paramethers, 
+	public Plugin addPlugin(String name, String description, String URL, ParametersDTO paramethers, 
 			PluginType type, PluginStatus status, PluginMethod method, List<String> compatibleFormats);
 	public boolean deletePlugin(ObjectId id);
 	public Plugin getPlugin(ObjectId id);

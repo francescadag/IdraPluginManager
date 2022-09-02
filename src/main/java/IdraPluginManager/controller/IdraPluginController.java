@@ -57,7 +57,7 @@ public class IdraPluginController {
 			@RequestParam(name="status") PluginStatus status, @RequestParam(name="method")  PluginMethod method){
 		log.info("Register Plugin");
 		return s.addPlugin(plugin.getName(), plugin.getDescription(),
-				plugin.getLink(), plugin.getParamethers(), type, status, method, plugin.getCompatibleFormats());
+				plugin.getUrl(), plugin.getParamethers(), type, status, method, plugin.getCompatibleFormats());
 	}
 	
 	@PutMapping("/{id}")
@@ -68,7 +68,7 @@ public class IdraPluginController {
 			throw new BadRequestException("Invalid plug-in id provided: " + id);
 		}
 		return s.updatePlugin(new ObjectId(id), plugin.getName(), plugin.getDescription(), type,
-				plugin.getLink(), status, method, plugin.getCompatibleFormats());
+				plugin.getUrl(), status, method, plugin.getCompatibleFormats());
 	}
 
 	@DeleteMapping("/{id}")

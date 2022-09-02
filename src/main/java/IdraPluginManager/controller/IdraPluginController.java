@@ -37,12 +37,6 @@ public class IdraPluginController {
 	private IdraPluginServiceImpl s;
 
 	
-	@RequestMapping("/")  
-	@ResponseBody 
-	public String index() {
-		return "Idra plug-in manager is running";
-	}
-	
 	@GetMapping("/{id}")
 	private Plugin getPlugin(@PathVariable(name="id") String id){
 		log.info("Get Plugin by Id");

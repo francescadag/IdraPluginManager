@@ -29,6 +29,7 @@ spring:
       username: ${MONGO_USERNAME:root}
       password: ${MONGO_PASSWORD:pssw}
       authentication-database: ${MONGO_AUTHENTICATION_DB:admin}
+      auto-index-creation: true
 
 mongodb:
   encrypt: 

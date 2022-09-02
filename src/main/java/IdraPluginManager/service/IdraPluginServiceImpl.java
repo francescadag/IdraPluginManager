@@ -1,11 +1,10 @@
 package IdraPluginManager.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import IdraPluginManager.exceptions.BadRequestException;
 import IdraPluginManager.exceptions.ResourceNotFoundException;
 import IdraPluginManager.model.Plugin;
@@ -64,6 +63,12 @@ public class IdraPluginServiceImpl implements IdraPluginService {
 	public Plugin getPlugin(ObjectId id) {
 		log.debug("Read Plugin by id "+id);
 		return pluginRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Plugin with id: " + id + " not found"));
+	}
+	
+	@Override
+	public List<Plugin> getAllPlugins() {
+		log.debug("Get All Idra Plugins");
+		return pluginRepo.findAll();
 	}
 	
 	@Override

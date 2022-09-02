@@ -16,6 +16,7 @@ public interface IdraPluginService {
 			PluginType type, PluginStatus status, PluginMethod method, List<String> compatibleFormats);
 	public boolean deletePlugin(ObjectId id);
 	public Plugin getPlugin(ObjectId id);
+	public List<Plugin> getAllPlugins();
 	public Plugin updatePlugin(ObjectId id, String name, String description, PluginType type,
 			String link, PluginStatus statust, PluginMethod method, List<String> compatibleFormats) ;
 }

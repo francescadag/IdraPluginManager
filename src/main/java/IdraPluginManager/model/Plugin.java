@@ -17,7 +17,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import IdraPluginManager.paramethers.model.ParametersDTO;
+import IdraPluginManager.paramethers.model.Parameters;
 import IdraPluginManager.utils.AutoGenObjectID;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -52,7 +52,7 @@ implements Serializable {
 	@Indexed(unique=true)
 	private String url;
 	private PluginMethod method;
-	private ParametersDTO paramethers;
+	private List<Parameters> parameters;
 	private List<String> compatibleFormats;
 	
 	

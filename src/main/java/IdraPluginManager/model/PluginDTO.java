@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.data.mongodb.core.index.Indexed;
 
-import IdraPluginManager.paramethers.model.ParametersDTO;
+import IdraPluginManager.paramethers.model.Parameters;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ public class PluginDTO {
 	@Indexed(unique=true)
 	private String url;
 	private String description;
-	private ParametersDTO paramethers;
+	private List<Parameters> parameters;
 	private List<String> compatibleFormats;
 
 

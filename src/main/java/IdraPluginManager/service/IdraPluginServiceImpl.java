@@ -1,17 +1,18 @@
 package IdraPluginManager.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import IdraPluginManager.exceptions.BadRequestException;
 import IdraPluginManager.exceptions.ResourceNotFoundException;
 import IdraPluginManager.model.Plugin;
 import IdraPluginManager.model.PluginMethod;
 import IdraPluginManager.model.PluginStatus;
 import IdraPluginManager.model.PluginType;
-import IdraPluginManager.paramethers.model.ParametersDTO;
+import IdraPluginManager.paramethers.model.Parameters;
 import IdraPluginManager.repository.PluginRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,7 +24,7 @@ public class IdraPluginServiceImpl implements IdraPluginService {
 	PluginRepository pluginRepo ;
 
 	@Override
-	public Plugin addPlugin(String name, String description, String link, ParametersDTO paramethers, 
+	public Plugin addPlugin(String name, String description, String link, List<Parameters> parameters, 
 			PluginType type, PluginStatus status, PluginMethod method, List<String> compatibleFormats) {
 		
 		if (existsPluginName(name)) {
@@ -37,7 +38,7 @@ public class IdraPluginServiceImpl implements IdraPluginService {
 		p.setUrl(link);
 		p.setStatus(status);
 		p.setMethod(method);
-		p.setParamethers(paramethers);
+		p.setParameters(parameters);
 		p.setType(type);
 		p.setCompatibleFormats(compatibleFormats);
 
@@ -73,7 +74,7 @@ public class IdraPluginServiceImpl implements IdraPluginService {
 	
 	@Override
 	public Plugin updatePlugin(ObjectId id, String name, String description, PluginType type,
-			String link, PluginStatus status, PluginMethod method, List<String> compatibleFormats) {
+			String link, PluginStatus status, PluginMethod method, List<String> compatibleFormats, List<Parameters> parameters) {
 		log.debug("Update Plugin by id "+id);
 		Plugin p = pluginRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("Plugin with id: " + id + " not found"));
 		
@@ -84,6 +85,7 @@ public class IdraPluginServiceImpl implements IdraPluginService {
 		p.setUrl(link);
 		p.setMethod(method);
 		p.setCompatibleFormats(compatibleFormats);
+		p.setParameters(parameters);
 		
 		return pluginRepo.save(p);
 	}

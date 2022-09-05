@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,12 +34,14 @@ public class IdraPluginController {
 	private IdraPluginServiceImpl s;
 
 	@GetMapping
-	private List<Plugin> getAllEvitaDevice(){
+	@CrossOrigin(origins = {"${idra.basepath}"})
+	private List<Plugin> getAllPlugins(){
 		log.debug("Get All Idra plug-ins");
 		return s.getAllPlugins();
 	}
 	
 	@GetMapping("/{id}")
+	@CrossOrigin(origins = {"${idra.basepath}"})
 	private Plugin getPlugin(@PathVariable(name="id") String id){
 		log.info("Get Plugin by Id");
 		if(!ObjectId.isValid(id)) {
@@ -48,14 +51,16 @@ public class IdraPluginController {
 	}
 
 	@PostMapping
+	@CrossOrigin(origins = {"${idra.basepath}"})
 	private Plugin createPlugin(@RequestBody @Valid PluginDTO plugin, @RequestParam(name="type") PluginType type, 
 			@RequestParam(name="status") PluginStatus status, @RequestParam(name="method")  PluginMethod method){
 		log.info("Register Plugin");
 		return s.addPlugin(plugin.getName(), plugin.getDescription(),
-				plugin.getUrl(), plugin.getParamethers(), type, status, method, plugin.getCompatibleFormats());
+				plugin.getUrl(), plugin.getParameters(), type, status, method, plugin.getCompatibleFormats());
 	}
 	
 	@PutMapping("/{id}")
+	@CrossOrigin(origins = {"${idra.basepath}"})
 	private Plugin updatePlugin(@PathVariable(name="id") String id, @RequestBody @Valid PluginDTO plugin, @RequestParam(name="type") PluginType type,
 			@RequestParam(name="status") PluginStatus status, @RequestParam(name="method")  PluginMethod method){
 		log.info("Update Plugin by Id");
@@ -63,10 +68,11 @@ public class IdraPluginController {
 			throw new BadRequestException("Invalid plug-in id provided: " + id);
 		}
 		return s.updatePlugin(new ObjectId(id), plugin.getName(), plugin.getDescription(), type,
-				plugin.getUrl(), status, method, plugin.getCompatibleFormats());
+				plugin.getUrl(), status, method, plugin.getCompatibleFormats(), plugin.getParameters());
 	}
 
 	@DeleteMapping("/{id}")
+	@CrossOrigin(origins = {"${idra.basepath}"})
 	private ResponseEntity<?> deletePlugin(@PathVariable(name="id") String id){
 		log.info("Delete Plugin by Id");
 		if(!ObjectId.isValid(id)) {

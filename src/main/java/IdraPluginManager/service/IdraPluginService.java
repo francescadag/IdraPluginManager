@@ -19,4 +19,5 @@ public interface IdraPluginService {
 	public List<Plugin> getAllPlugins();
 	public Plugin updatePlugin(ObjectId id, String name, String description, PluginType type,
 			String link, PluginStatus statust, PluginMethod method, List<String> compatibleFormats, List<Parameters> parameters) ;
+	public Plugin enablePlugin(ObjectId pluginId, PluginStatus enable);
 }

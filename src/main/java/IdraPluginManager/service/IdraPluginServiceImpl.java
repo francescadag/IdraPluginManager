@@ -5,7 +5,6 @@ import java.util.List;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import IdraPluginManager.exceptions.BadRequestException;
 import IdraPluginManager.exceptions.ResourceNotFoundException;
 import IdraPluginManager.model.Plugin;
@@ -87,6 +86,14 @@ public class IdraPluginServiceImpl implements IdraPluginService {
 		p.setCompatibleFormats(compatibleFormats);
 		p.setParameters(parameters);
 		
+		return pluginRepo.save(p);
+	}
+	
+	@Override
+	public Plugin enablePlugin(ObjectId pluginId, PluginStatus enable) {
+		Plugin p = getPlugin(pluginId);
+		log.info("Changing the status for " + pluginId + " with value: " + enable);
+		p.setStatus(enable);
 		return pluginRepo.save(p);
 	}
 

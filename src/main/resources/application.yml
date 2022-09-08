@@ -14,11 +14,6 @@ logging:
     '[org.springframework.web.socket.config.WebSocketMessageBrokerStats]': ${SOCKET_LOG_LEVEL:ERROR}
       
 spring:
-  servlet:
-    multipart:
-      max-file-size: ${EVITA_MAX_FILE_SIZE:20MB}
-      max-request-size: ${EVITA_MAX_FILE_SIZE:20MB}
-      enabled: true
   devtools:
       add-properties: false
   data:
@@ -30,6 +25,13 @@ spring:
       password: ${MONGO_PASSWORD:pssw}
       authentication-database: ${MONGO_AUTHENTICATION_DB:admin}
       auto-index-creation: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${KEYCLOAK_SERVER_URL:https://evita-test.opsilab.it/auth}/realms/${KEYCLOAK_REALM:evita}/protocol/openid-connect/certs
+
+internal-cors-enabled: ${CORS_ENABLED:true}
 
 mongodb:
   encrypt: 
@@ -42,4 +44,5 @@ springdoc:
 
 idra:
   basepath: ${IDRA_BASEPATH:http://localhost:8080}
+  
   

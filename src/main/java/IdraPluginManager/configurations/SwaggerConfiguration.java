@@ -12,12 +12,12 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 	  info = @Info(title = "Idra Plug-in Manager API", version = "v2")
 	//, servers = @Server(url = "https://evita-test.opsilab.it/api", description = "Generated server url")
 )
-//@SecurityScheme(
-//    name = "bearerAuth",
-//    type = SecuritySchemeType.HTTP,
-//    bearerFormat = "JWT",
-//    scheme = "bearer"
-//)
+@SecurityScheme(
+    name = "bearerAuth",
+    type = SecuritySchemeType.HTTP,
+    bearerFormat = "JWT",
+    scheme = "bearer"
+)
 public class SwaggerConfiguration {
 	
 }

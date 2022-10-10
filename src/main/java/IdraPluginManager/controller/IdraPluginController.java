@@ -22,7 +22,7 @@ import IdraPluginManager.model.PluginMethod;
 import IdraPluginManager.model.PluginStatus;
 import IdraPluginManager.model.PluginType;
 import IdraPluginManager.service.IdraPluginServiceImpl;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+//import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -53,7 +53,7 @@ public class IdraPluginController {
 
 	@PostMapping
 	@CrossOrigin(origins = {"${idra.basepath}"})
-	@SecurityRequirement(name = "bearerAuth")
+//	@SecurityRequirement(name = "bearerAuth")
 	private Plugin createPlugin(@RequestBody @Valid PluginDTO plugin, @RequestParam(name="type") PluginType type, 
 			@RequestParam(name="status") PluginStatus status, @RequestParam(name="method")  PluginMethod method){
 		log.info("Register Plugin");
@@ -63,7 +63,7 @@ public class IdraPluginController {
 	
 	@PutMapping("/{id}")
 	@CrossOrigin(origins = {"${idra.basepath}"})
-	@SecurityRequirement(name = "bearerAuth")
+//	@SecurityRequirement(name = "bearerAuth")
 	private Plugin updatePlugin(@PathVariable(name="id") String id, @RequestBody @Valid PluginDTO plugin, @RequestParam(name="type") PluginType type,
 			@RequestParam(name="status") PluginStatus status, @RequestParam(name="method")  PluginMethod method){
 		log.info("Update Plugin by Id");
@@ -76,7 +76,7 @@ public class IdraPluginController {
 
 	@DeleteMapping("/{id}")
 	@CrossOrigin(origins = {"${idra.basepath}"})
-	@SecurityRequirement(name = "bearerAuth")
+//	@SecurityRequirement(name = "bearerAuth")
 	private ResponseEntity<?> deletePlugin(@PathVariable(name="id") String id){
 		log.info("Delete Plugin by Id");
 		if(!ObjectId.isValid(id)) {
@@ -90,7 +90,7 @@ public class IdraPluginController {
 	}
 	
 	@PutMapping("/{id}/status")
-	@SecurityRequirement(name = "bearerAuth")
+//	@SecurityRequirement(name = "bearerAuth")
 	private Plugin enableDevice(@PathVariable(name="id") String pluginId, @RequestParam(name="status") PluginStatus status){
 		log.debug("Enable Plugin");
 		if(!ObjectId.isValid(pluginId)) {
